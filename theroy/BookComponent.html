@@ -1,0 +1,53 @@
+<html>
+<head>
+  <title>React Book Component with this.props</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    .book-card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px;
+      width: 250px;
+      box-shadow: 2px 2px 5px #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    // Book component (child)
+    class Book extends React.Component {
+      render() {
+        const book = this.props.book; 
+        return (
+          <div className="book-card">
+            <h2>{book.title}</h2>
+            <p>by {book.author}</p>
+          </div>
+        );
+      }
+    }
+    class App extends React.Component {
+      render() {
+        const books = [
+          { id: 1, title: "To Kill a Mockingbird", author: "Harper Lee" },
+          { id: 2, title: "1984", author: "George Orwell" },
+          { id: 3, title: "The Great Gatsby", author: "F. Scott Fitzgerald" }
+        ];
+        const book = books.map(book=>(
+		        <Book key={book.id} book={book}/>));
+        return (
+          <div>
+            <h1>Book List</h1>
+            {bookRow}
+          </div>
+        );
+      }
+ 
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
