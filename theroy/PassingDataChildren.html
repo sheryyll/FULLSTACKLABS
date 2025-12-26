@@ -1,0 +1,46 @@
+<html>
+<head>
+  <title>React Children Example</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class BorderWrap extends React.Component {
+      render() {
+        const style = { border: "1px solid silver", padding: 10, margin: 5 };
+        return <div style={style}>{this.props.children}</div>;
+      }
+    }
+    class App extends React.Component {
+      render() {
+        return (
+          <div>
+            <h1>Using Children in React</h1>
+
+            <BorderWrap>
+              <p>This is a paragraph passed as children.</p>
+            </BorderWrap>
+
+            <BorderWrap>
+              <ul>
+                <li>Item 1</li>
+                <li>Item 2</li>
+              </ul>
+            </BorderWrap>
+
+            <BorderWrap>
+              <h3>Custom Header</h3>
+              <p>Some more content inside BorderWrap.</p>
+            </BorderWrap>
+          </div>
+        );
+      }
+    }
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
